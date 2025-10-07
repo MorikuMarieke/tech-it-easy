@@ -1,64 +1,46 @@
-package nl.moriku.techiteasy.model;
+package nl.moriku.techiteasy.dto;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import nl.moriku.techiteasy.validation.CreateGroup;
+import nl.moriku.techiteasy.validation.PutGroup;
 
-@Entity
-@Table(name = "televisions")
-public class Television {
+public class TelevisionInputDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @NotBlank(groups = {CreateGroup.class, PutGroup.class})
     private String name;
+
+    @NotBlank(groups = {CreateGroup.class, PutGroup.class})
     private String type;
+
+    @NotBlank(groups = {CreateGroup.class, PutGroup.class})
     private String brand;
+
+    @NotNull(groups = {CreateGroup.class, PutGroup.class}) @PositiveOrZero
     private Double price;
+
+    @NotNull(groups = {CreateGroup.class, PutGroup.class}) @Positive
     private Double availableSize;
+
+    @NotNull(groups = {CreateGroup.class, PutGroup.class}) @Positive
     private Integer refreshRate;
+
+    @NotBlank(groups = {CreateGroup.class, PutGroup.class})
     private String screenType;
+
+    @NotBlank(groups = {CreateGroup.class, PutGroup.class})
     private String screenQuality;
 
-    private Boolean smartTv;
-    @Column(nullable = false)
-    private Boolean wifi;
-    @Column(nullable = false)
-    private Boolean voiceControl;
-    @Column(nullable = false)
-    private Boolean hdr;
-    @Column(nullable = false)
-    private Boolean bluetooth;
-    @Column(nullable = false)
-    private Boolean ambiLight;
-    @Column(nullable = false)
-    private Integer originalStock = 0;
-    @Column(nullable = false)
-    private Integer sold = 0;
+    @NotNull(groups = {CreateGroup.class, PutGroup.class}) private Boolean smartTv;
+    @NotNull(groups = {CreateGroup.class, PutGroup.class}) private Boolean wifi;
+    @NotNull(groups = {CreateGroup.class, PutGroup.class}) private Boolean voiceControl;
+    @NotNull(groups = {CreateGroup.class, PutGroup.class}) private Boolean hdr;
+    @NotNull(groups = {CreateGroup.class, PutGroup.class}) private Boolean bluetooth;
+    @NotNull(groups = {CreateGroup.class, PutGroup.class}) private Boolean ambiLight;
 
-    public Television() {
-    }
+    @NotNull(groups = {CreateGroup.class, PutGroup.class}) @PositiveOrZero
+    private Integer originalStock;
 
-    public Television(Long id, String name, String type, String brand, Double price, Double availableSize, int refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, Integer originalStock, Integer sold) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.brand = brand;
-        this.price = price;
-        this.availableSize = availableSize;
-        this.refreshRate = refreshRate;
-        this.screenType = screenType;
-        this.screenQuality = screenQuality;
-        this.smartTv = smartTv;
-        this.wifi = wifi;
-        this.voiceControl = voiceControl;
-        this.hdr = hdr;
-        this.bluetooth = bluetooth;
-        this.ambiLight = ambiLight;
-        this.originalStock = originalStock;
-        this.sold = sold;
-    }
-
-    public Long getId() {
-        return id;
+    public TelevisionInputDto() {
     }
 
     public String getName() {
@@ -180,14 +162,4 @@ public class Television {
     public void setOriginalStock(Integer originalStock) {
         this.originalStock = originalStock;
     }
-
-    public Integer getSold() {
-        return sold;
-    }
-
-    public void setSold(Integer sold) {
-        this.sold = sold;
-    }
-
-
 }

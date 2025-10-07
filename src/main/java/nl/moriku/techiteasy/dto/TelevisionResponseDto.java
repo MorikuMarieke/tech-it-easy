@@ -1,64 +1,38 @@
-package nl.moriku.techiteasy.model;
+package nl.moriku.techiteasy.dto;
 
-import jakarta.persistence.*;
+public class TelevisionResponseDto {
 
-@Entity
-@Table(name = "televisions")
-public class Television {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String type;
     private String brand;
     private Double price;
+
     private Double availableSize;
     private Integer refreshRate;
     private String screenType;
     private String screenQuality;
 
     private Boolean smartTv;
-    @Column(nullable = false)
     private Boolean wifi;
-    @Column(nullable = false)
     private Boolean voiceControl;
-    @Column(nullable = false)
     private Boolean hdr;
-    @Column(nullable = false)
     private Boolean bluetooth;
-    @Column(nullable = false)
     private Boolean ambiLight;
-    @Column(nullable = false)
-    private Integer originalStock = 0;
-    @Column(nullable = false)
-    private Integer sold = 0;
 
-    public Television() {
-    }
+    private Integer originalStock; // optional to expose
+    private Integer sold;          // read-only
 
-    public Television(Long id, String name, String type, String brand, Double price, Double availableSize, int refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, Integer originalStock, Integer sold) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.brand = brand;
-        this.price = price;
-        this.availableSize = availableSize;
-        this.refreshRate = refreshRate;
-        this.screenType = screenType;
-        this.screenQuality = screenQuality;
-        this.smartTv = smartTv;
-        this.wifi = wifi;
-        this.voiceControl = voiceControl;
-        this.hdr = hdr;
-        this.bluetooth = bluetooth;
-        this.ambiLight = ambiLight;
-        this.originalStock = originalStock;
-        this.sold = sold;
-    }
+    // Convenience (optional): computed by mapper/service
+    private Integer currentStock;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -189,5 +163,11 @@ public class Television {
         this.sold = sold;
     }
 
+    public Integer getCurrentStock() {
+        return currentStock;
+    }
 
+    public void setCurrentStock(Integer currentStock) {
+        this.currentStock = currentStock;
+    }
 }
