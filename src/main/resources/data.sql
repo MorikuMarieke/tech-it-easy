@@ -1,4 +1,20 @@
--- Only data inserts; Hibernate creates the table "televisions"
+INSERT INTO remote_controller (id, compatible_with, battery_type, name, brand, price, original_stock)
+VALUES
+    (1, 'Universal', 'AA', 'RC Basic', 'TechBrand', 19.99, 50),
+    (2, 'Television-X', 'AAA', 'RC Premium', 'SuperBrand', 29.99, 80);
+
+INSERT INTO ci_module (id, name, type, price)
+VALUES
+    (1, 'CI Module Basic', 'Type-A', 49.99),
+    (2, 'CI Module Pro', 'Type-B', 79.99),
+    (3, 'CI Module Gaming', 'Type-C', 99.99);
+
+INSERT INTO wall_bracket (id, size, adjustable, name, price)
+VALUES
+    (1, '32-55 inch', TRUE,  'Bracket Slim',   39.99),
+    (2, '42-70 inch', FALSE, 'Bracket Fixed',  29.99),
+    (3, '55-85 inch', TRUE,  'Bracket Pro XL', 69.99);
+
 INSERT INTO televisions
 (name, type, brand, price, available_size, refresh_rate, screen_type, screen_quality,
  smart_tv, wifi, voice_control, hdr, bluetooth, ambi_light, original_stock, sold)

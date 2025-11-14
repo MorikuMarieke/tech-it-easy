@@ -8,158 +8,154 @@ public class TelevisionInputDto {
 
     @NotBlank(groups = {CreateGroup.class, PutGroup.class})
     private String name;
-
     @NotBlank(groups = {CreateGroup.class, PutGroup.class})
     private String type;
-
     @NotBlank(groups = {CreateGroup.class, PutGroup.class})
     private String brand;
-
-    @NotNull(groups = {CreateGroup.class, PutGroup.class}) @PositiveOrZero
+    @NotNull(groups = {CreateGroup.class, PutGroup.class}) @PositiveOrZero(groups = {CreateGroup.class, PutGroup.class})
     private Double price;
-
-    @NotNull(groups = {CreateGroup.class, PutGroup.class}) @Positive
+    @NotNull(groups = {CreateGroup.class, PutGroup.class}) @Positive(groups = {CreateGroup.class, PutGroup.class})
     private Double availableSize;
-
-    @NotNull(groups = {CreateGroup.class, PutGroup.class}) @Positive
+    @NotNull(groups = {CreateGroup.class, PutGroup.class}) @Positive(groups = {CreateGroup.class, PutGroup.class})
     private Integer refreshRate;
-
     @NotBlank(groups = {CreateGroup.class, PutGroup.class})
     private String screenType;
-
     @NotBlank(groups = {CreateGroup.class, PutGroup.class})
     private String screenQuality;
-
-    @NotNull(groups = {CreateGroup.class, PutGroup.class}) private Boolean smartTv;
-    @NotNull(groups = {CreateGroup.class, PutGroup.class}) private Boolean wifi;
-    @NotNull(groups = {CreateGroup.class, PutGroup.class}) private Boolean voiceControl;
-    @NotNull(groups = {CreateGroup.class, PutGroup.class}) private Boolean hdr;
-    @NotNull(groups = {CreateGroup.class, PutGroup.class}) private Boolean bluetooth;
-    @NotNull(groups = {CreateGroup.class, PutGroup.class}) private Boolean ambiLight;
-
-    @NotNull(groups = {CreateGroup.class, PutGroup.class}) @PositiveOrZero
+    @NotNull(groups = {CreateGroup.class, PutGroup.class})
+    private Boolean smartTv;
+    @NotNull(groups = {CreateGroup.class, PutGroup.class})
+    private Boolean wifi;
+    @NotNull(groups = {CreateGroup.class, PutGroup.class})
+    private Boolean voiceControl;
+    @NotNull(groups = {CreateGroup.class, PutGroup.class})
+    private Boolean hdr;
+    @NotNull(groups = {CreateGroup.class, PutGroup.class})
+    private Boolean bluetooth;
+    @NotNull(groups = {CreateGroup.class, PutGroup.class})
+    private Boolean ambiLight;
+    @NotNull(groups = {CreateGroup.class, PutGroup.class}) @PositiveOrZero(groups = {CreateGroup.class, PutGroup.class})
     private Integer originalStock;
 
-    public TelevisionInputDto() {
-    }
+    public TelevisionInputDto() {}
 
-    public String getName() {
+    public @NotBlank(groups = {CreateGroup.class, PutGroup.class}) String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@NotBlank(groups = {CreateGroup.class, PutGroup.class}) String name) {
         this.name = name;
     }
 
-    public String getType() {
+    public @NotBlank(groups = {CreateGroup.class, PutGroup.class}) String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(@NotBlank(groups = {CreateGroup.class, PutGroup.class}) String type) {
         this.type = type;
     }
 
-    public String getBrand() {
+    public @NotBlank(groups = {CreateGroup.class, PutGroup.class}) String getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand(@NotBlank(groups = {CreateGroup.class, PutGroup.class}) String brand) {
         this.brand = brand;
     }
 
-    public Double getPrice() {
+    public @NotNull(groups = {CreateGroup.class, PutGroup.class}) @PositiveOrZero Double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(@NotNull(groups = {CreateGroup.class, PutGroup.class}) @PositiveOrZero Double price) {
         this.price = price;
     }
 
-    public Double getAvailableSize() {
+    public @NotNull(groups = {CreateGroup.class, PutGroup.class}) @Positive Double getAvailableSize() {
         return availableSize;
     }
 
-    public void setAvailableSize(Double availableSize) {
+    public void setAvailableSize(@NotNull(groups = {CreateGroup.class, PutGroup.class}) @Positive Double availableSize) {
         this.availableSize = availableSize;
     }
 
-    public Integer getRefreshRate() {
+    public @NotNull(groups = {CreateGroup.class, PutGroup.class}) @Positive Integer getRefreshRate() {
         return refreshRate;
     }
 
-    public void setRefreshRate(Integer refreshRate) {
+    public void setRefreshRate(@NotNull(groups = {CreateGroup.class, PutGroup.class}) @Positive Integer refreshRate) {
         this.refreshRate = refreshRate;
     }
 
-    public String getScreenType() {
+    public @NotBlank(groups = {CreateGroup.class, PutGroup.class}) String getScreenType() {
         return screenType;
     }
 
-    public void setScreenType(String screenType) {
+    public void setScreenType(@NotBlank(groups = {CreateGroup.class, PutGroup.class}) String screenType) {
         this.screenType = screenType;
     }
 
-    public String getScreenQuality() {
+    public @NotBlank(groups = {CreateGroup.class, PutGroup.class}) String getScreenQuality() {
         return screenQuality;
     }
 
-    public void setScreenQuality(String screenQuality) {
+    public void setScreenQuality(@NotBlank(groups = {CreateGroup.class, PutGroup.class}) String screenQuality) {
         this.screenQuality = screenQuality;
     }
 
-    public Boolean getSmartTv() {
+    public @NotNull(groups = {CreateGroup.class, PutGroup.class}) Boolean getSmartTv() {
         return smartTv;
     }
 
-    public void setSmartTv(Boolean smartTv) {
+    public void setSmartTv(@NotNull(groups = {CreateGroup.class, PutGroup.class}) Boolean smartTv) {
         this.smartTv = smartTv;
     }
 
-    public Boolean getWifi() {
+    public @NotNull(groups = {CreateGroup.class, PutGroup.class}) Boolean getWifi() {
         return wifi;
     }
 
-    public void setWifi(Boolean wifi) {
+    public void setWifi(@NotNull(groups = {CreateGroup.class, PutGroup.class}) Boolean wifi) {
         this.wifi = wifi;
     }
 
-    public Boolean getVoiceControl() {
+    public @NotNull(groups = {CreateGroup.class, PutGroup.class}) Boolean getVoiceControl() {
         return voiceControl;
     }
 
-    public void setVoiceControl(Boolean voiceControl) {
+    public void setVoiceControl(@NotNull(groups = {CreateGroup.class, PutGroup.class}) Boolean voiceControl) {
         this.voiceControl = voiceControl;
     }
 
-    public Boolean getHdr() {
+    public @NotNull(groups = {CreateGroup.class, PutGroup.class}) Boolean getHdr() {
         return hdr;
     }
 
-    public void setHdr(Boolean hdr) {
+    public void setHdr(@NotNull(groups = {CreateGroup.class, PutGroup.class}) Boolean hdr) {
         this.hdr = hdr;
     }
 
-    public Boolean getBluetooth() {
+    public @NotNull(groups = {CreateGroup.class, PutGroup.class}) Boolean getBluetooth() {
         return bluetooth;
     }
 
-    public void setBluetooth(Boolean bluetooth) {
+    public void setBluetooth(@NotNull(groups = {CreateGroup.class, PutGroup.class}) Boolean bluetooth) {
         this.bluetooth = bluetooth;
     }
 
-    public Boolean getAmbiLight() {
+    public @NotNull(groups = {CreateGroup.class, PutGroup.class}) Boolean getAmbiLight() {
         return ambiLight;
     }
 
-    public void setAmbiLight(Boolean ambiLight) {
+    public void setAmbiLight(@NotNull(groups = {CreateGroup.class, PutGroup.class}) Boolean ambiLight) {
         this.ambiLight = ambiLight;
     }
 
-    public Integer getOriginalStock() {
+    public @NotNull(groups = {CreateGroup.class, PutGroup.class}) @PositiveOrZero Integer getOriginalStock() {
         return originalStock;
     }
 
-    public void setOriginalStock(Integer originalStock) {
+    public void setOriginalStock(@NotNull(groups = {CreateGroup.class, PutGroup.class}) @PositiveOrZero Integer originalStock) {
         this.originalStock = originalStock;
     }
 }

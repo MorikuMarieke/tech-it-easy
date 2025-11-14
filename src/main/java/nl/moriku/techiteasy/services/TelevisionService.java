@@ -4,9 +4,11 @@ import nl.moriku.techiteasy.dto.TelevisionInputDto;
 import nl.moriku.techiteasy.dto.TelevisionResponseDto;
 import nl.moriku.techiteasy.exceptions.ResourceNotFoundException;
 import nl.moriku.techiteasy.mapper.TelevisionMapper;
+import nl.moriku.techiteasy.model.RemoteController;
 import nl.moriku.techiteasy.model.Television;
+import nl.moriku.techiteasy.repositories.RemoteControllerRepository;
 import nl.moriku.techiteasy.repositories.TelevisionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,10 +20,13 @@ import java.util.List;
 public class TelevisionService {
 
     private final TelevisionRepository repos;
+    private final TelevisionRepository televisionRepository;
+    private final RemoteControllerRepository remoteControllerRepository;
 
-    @Autowired
-    public TelevisionService(TelevisionRepository repos) {
+    public TelevisionService(TelevisionRepository repos, TelevisionRepository televisionRepository, RemoteControllerRepository remoteControllerRepository) {
         this.repos = repos;
+        this.televisionRepository = televisionRepository;
+        this.remoteControllerRepository = remoteControllerRepository;
     }
 
     @Transactional
@@ -36,12 +41,14 @@ public class TelevisionService {
     }
 
     public List<TelevisionResponseDto> getAllTelevisions(String brand) {
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+
         List<Television> tvList;
 
         if (brand == null || brand.isBlank()) {
-            tvList = repos.findAll();
+            tvList = repos.findAll(sort);
         } else {
-            tvList = repos.findByBrandIgnoreCase(brand.trim());
+            tvList = repos.findByBrandIgnoreCase(brand.trim(), sort);
         }
 
         List<TelevisionResponseDto> tvDtoList = new ArrayList<>(tvList.size());
@@ -75,6 +82,16 @@ public class TelevisionService {
         TelevisionMapper.copyNonNullToEntity(in, tv);
 
         return TelevisionMapper.toResponseDto(tv);
+    }
+
+    @Transactional
+    public void assignRemoteControllerToTelevision(Long tvId, Long rcId) {
+        Television tv = televisionRepository.findById(tvId).orElseThrow(() -> new ResourceNotFoundException("Television " + tvId + " not found."));
+
+        RemoteController rc = remoteControllerRepository.findById(rcId).orElseThrow(() -> new ResourceNotFoundException("Remote controller " + rcId + " not found."));
+
+        tv.setRemoteController(rc);
+        televisionRepository.save(tv);
     }
 
 }

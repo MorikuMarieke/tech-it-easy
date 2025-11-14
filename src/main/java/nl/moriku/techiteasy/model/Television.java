@@ -2,22 +2,33 @@ package nl.moriku.techiteasy.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "televisions")
+
 public class Television {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String type;
+    @Column(nullable = false)
     private String brand;
+    @Column(nullable = false)
     private Double price;
+    @Column(nullable = false)
     private Double availableSize;
+    @Column(nullable = false)
     private Integer refreshRate;
+    @Column(nullable = false)
     private String screenType;
+    @Column(nullable = false)
     private String screenQuality;
-
+    @Column(nullable = false)
     private Boolean smartTv;
     @Column(nullable = false)
     private Boolean wifi;
@@ -33,28 +44,20 @@ public class Television {
     private Integer originalStock = 0;
     @Column(nullable = false)
     private Integer sold = 0;
+    @OneToOne
+    @JoinColumn(name = "remote_controller_id")
+    private RemoteController remoteController;
+    @OneToMany(mappedBy = "television")
+    private List<CIModule> ciModules;
+    @ManyToMany
+    @JoinTable(
+        name = "television_wall_brackets",
+        joinColumns = @JoinColumn(name = "television_id"),
+        inverseJoinColumns = @JoinColumn(name = "wall_bracket_id")
+    )
+    private List<WallBracket> wallBrackets;
 
     public Television() {
-    }
-
-    public Television(Long id, String name, String type, String brand, Double price, Double availableSize, int refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, Integer originalStock, Integer sold) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.brand = brand;
-        this.price = price;
-        this.availableSize = availableSize;
-        this.refreshRate = refreshRate;
-        this.screenType = screenType;
-        this.screenQuality = screenQuality;
-        this.smartTv = smartTv;
-        this.wifi = wifi;
-        this.voiceControl = voiceControl;
-        this.hdr = hdr;
-        this.bluetooth = bluetooth;
-        this.ambiLight = ambiLight;
-        this.originalStock = originalStock;
-        this.sold = sold;
     }
 
     public Long getId() {
@@ -65,9 +68,7 @@ public class Television {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
     public String getType() {
         return type;
@@ -189,5 +190,31 @@ public class Television {
         this.sold = sold;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public RemoteController getRemoteController() {
+        return remoteController;
+    }
+
+    public void setRemoteController(RemoteController remoteController) {
+        this.remoteController = remoteController;
+    }
+
+    public List<CIModule> getCiModules() {
+        return ciModules;
+    }
+
+    public void setCiModules(List<CIModule> ciModules) {
+        this.ciModules = ciModules;
+    }
+
+    public List<WallBracket> getWallBrackets() {
+        return wallBrackets;
+    }
+
+    public void setWallBrackets(List<WallBracket> wallBrackets) {
+        this.wallBrackets = wallBrackets;
+    }
 }

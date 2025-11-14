@@ -65,6 +65,10 @@ public class TelevisionMapper {
         dto.setHdr(television.getHdr());
         dto.setBluetooth(television.getBluetooth());
         dto.setAmbiLight(television.getAmbiLight());
+
+        dto.setOriginalStock(television.getOriginalStock());
+        dto.setSold(television.getSold());
+
         int orig = television.getOriginalStock() == null ? 0 : television.getOriginalStock();
         int sold = television.getSold() == null ? 0 : television.getSold();
         dto.setCurrentStock(orig - sold);

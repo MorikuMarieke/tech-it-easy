@@ -64,7 +64,7 @@ public class TelevisionController {
         return ResponseEntity.ok(service.updateTelevision(id, in));
     }
 
-    @PatchMapping("/televisions/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<TelevisionResponseDto> updatePartialTelevision(@PathVariable Long id, @Validated(PatchGroup.class) @RequestBody TelevisionInputDto in) {
 
         return ResponseEntity.ok(service.patchTelevision(id, in));
