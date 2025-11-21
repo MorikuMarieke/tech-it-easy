@@ -36,6 +36,9 @@ public class TelevisionInputDto {
     private Boolean ambiLight;
     @NotNull(groups = {CreateGroup.class, PutGroup.class}) @PositiveOrZero(groups = {CreateGroup.class, PutGroup.class})
     private Integer originalStock;
+    private Long remoteControllerId;
+    private Long ciModuleId;
+    private Long wallBracketId;
 
     public TelevisionInputDto() {}
 
@@ -157,5 +160,29 @@ public class TelevisionInputDto {
 
     public void setOriginalStock(@NotNull(groups = {CreateGroup.class, PutGroup.class}) @PositiveOrZero Integer originalStock) {
         this.originalStock = originalStock;
+    }
+
+    public Long getRemoteControllerId() {
+        return remoteControllerId;
+    }
+
+    public void setRemoteControllerId(Long remoteControllerId) {
+        this.remoteControllerId = remoteControllerId;
+    }
+
+    public Long getCiModuleId() {
+        return ciModuleId;
+    }
+
+    public void setCiModuleId(Long ciModuleId) {
+        this.ciModuleId = ciModuleId;
+    }
+
+    public Long getWallBracketId() {
+        return wallBracketId;
+    }
+
+    public void setWallBracketId(Long wallBracketId) {
+        this.wallBracketId = wallBracketId;
     }
 }

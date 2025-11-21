@@ -1,5 +1,7 @@
 package nl.moriku.techiteasy.dto;
 
+import java.util.List;
+
 public class TelevisionResponseDto {
 
     private Long id;
@@ -26,6 +28,10 @@ public class TelevisionResponseDto {
 
     // Convenience (optional): computed by mapper/service
     private Integer currentStock;
+
+    private Long remoteControllerId;
+    private List<Long> ciModuleIds;
+    private List<Long> wallBracketIds;
 
     public Long getId() {
         return id;
@@ -169,5 +175,29 @@ public class TelevisionResponseDto {
 
     public void setCurrentStock(Integer currentStock) {
         this.currentStock = currentStock;
+    }
+
+    public Long getRemoteControllerId() {
+        return remoteControllerId;
+    }
+
+    public void setRemoteControllerId(Long remoteControllerId) {
+        this.remoteControllerId = remoteControllerId;
+    }
+
+    public List<Long> getCiModuleIds() {
+        return ciModuleIds;
+    }
+
+    public void setCiModuleIds(List<Long> ciModuleIds) {
+        this.ciModuleIds = ciModuleIds;
+    }
+
+    public List<Long> getWallBracketIds() {
+        return wallBracketIds;
+    }
+
+    public void setWallBracketIds(List<Long> wallBracketIds) {
+        this.wallBracketIds = wallBracketIds;
     }
 }

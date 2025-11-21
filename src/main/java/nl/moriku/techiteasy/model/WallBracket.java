@@ -1,6 +1,8 @@
 package nl.moriku.techiteasy.model;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +16,7 @@ public class WallBracket {
     private Boolean adjustable;
     private Double price;
     @ManyToMany(mappedBy = "wallBrackets")
-    private List<Television> televisions;
+    private List<Television> televisions = new ArrayList<>();
 
     public WallBracket() {
     }

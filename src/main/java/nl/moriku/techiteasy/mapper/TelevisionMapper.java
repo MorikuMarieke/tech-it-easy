@@ -2,7 +2,12 @@ package nl.moriku.techiteasy.mapper;
 
 import nl.moriku.techiteasy.dto.TelevisionResponseDto;
 import nl.moriku.techiteasy.dto.TelevisionInputDto;
+import nl.moriku.techiteasy.model.CIModule;
 import nl.moriku.techiteasy.model.Television;
+import nl.moriku.techiteasy.model.WallBracket;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TelevisionMapper {
 
@@ -46,7 +51,9 @@ public class TelevisionMapper {
         if (in.getHdr() != null) tv.setHdr(in.getHdr());
         if (in.getBluetooth() != null) tv.setBluetooth(in.getBluetooth());
         if (in.getAmbiLight() != null) tv.setAmbiLight(in.getAmbiLight());
-        if (in.getOriginalStock() != null) tv.setOriginalStock(in.getOriginalStock());}
+        if (in.getOriginalStock() != null) tv.setOriginalStock(in.getOriginalStock());
+
+    }
 
     public static TelevisionResponseDto toResponseDto(Television television) {
         TelevisionResponseDto dto = new TelevisionResponseDto();
@@ -72,6 +79,26 @@ public class TelevisionMapper {
         int orig = television.getOriginalStock() == null ? 0 : television.getOriginalStock();
         int sold = television.getSold() == null ? 0 : television.getSold();
         dto.setCurrentStock(orig - sold);
+
+        if (television.getRemoteController() != null) {
+            dto.setRemoteControllerId(television.getRemoteController().getId());
+        }
+        if (television.getCiModules() != null) {
+            List<Long> ciModuleIds = new ArrayList<>();
+            for (CIModule ciModule : television.getCiModules()) {
+                ciModuleIds.add(ciModule.getId());
+            }
+            dto.setCiModuleIds(ciModuleIds);
+        }
+        if (television.getWallBrackets() != null) {
+            List<Long> wallBracketIds = new ArrayList<>();
+            for (WallBracket wallBracket : television.getWallBrackets()) {
+                wallBracketIds.add(wallBracket.getId());
+            }
+            dto.setWallBracketIds(wallBracketIds);
+        }
         return dto;
     }
+
+
 }

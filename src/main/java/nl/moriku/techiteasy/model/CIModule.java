@@ -11,7 +11,7 @@ public class CIModule {
     private String name;
     private String brand;
     private Double price;
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "television_id")
     private Television television;
 
@@ -52,5 +52,13 @@ public class CIModule {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Television getTelevision() {
+        return television;
+    }
+
+    public void setTelevision(Television television) {
+        this.television = television;
     }
 }

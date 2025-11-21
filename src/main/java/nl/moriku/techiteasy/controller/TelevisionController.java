@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.sound.midi.Patch;
 import java.net.URI;
 import java.util.List;
 
@@ -66,6 +67,15 @@ public class TelevisionController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<TelevisionResponseDto> updatePartialTelevision(@PathVariable Long id, @Validated(PatchGroup.class) @RequestBody TelevisionInputDto in) {
+        if (in.getRemoteControllerId() != null) {
+            service.assignRemoteControllerToTelevision(id, in.getRemoteControllerId());
+        }
+        if (in.getCiModuleId() != null) {
+            service.assignCIModuleToTelevision(id, in.getCiModuleId());
+        }
+        if (in.getWallBracketId() != null) {
+            service.assignWallBracketToTelevision(id, in.getWallBracketId());
+        }
 
         return ResponseEntity.ok(service.patchTelevision(id, in));
     }

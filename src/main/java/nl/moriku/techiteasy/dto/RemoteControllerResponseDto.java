@@ -9,6 +9,7 @@ public class RemoteControllerResponseDto {
     private String batteryType;
     private Double price;
     private Integer originalStock = 0;
+    private Long televisionId;
 
     public Long getId() {
         return id;
@@ -64,5 +65,13 @@ public class RemoteControllerResponseDto {
 
     public void setOriginalStock(Integer originalStock) {
         this.originalStock = originalStock;
+    }
+
+    public Long getTelevisionId() {
+        return televisionId;
+    }
+
+    public void setTelevisionId(Long televisionId) {
+        this.televisionId = televisionId;
     }
 }

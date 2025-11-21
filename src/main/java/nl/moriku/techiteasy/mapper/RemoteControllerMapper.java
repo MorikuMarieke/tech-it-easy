@@ -38,6 +38,9 @@ public class RemoteControllerMapper {
         dto.setPrice(remoteController.getPrice());
         dto.setOriginalStock(remoteController.getOriginalStock());
         int orig = remoteController.getOriginalStock() == null ? 0 : remoteController.getOriginalStock();
+        if (remoteController.getTelevision() != null) {
+            dto.setTelevisionId(remoteController.getTelevision().getId());
+        }
         return dto;
     }
 }

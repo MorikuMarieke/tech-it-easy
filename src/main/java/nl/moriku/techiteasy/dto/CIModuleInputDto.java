@@ -16,6 +16,7 @@ public class CIModuleInputDto {
     @NotNull(groups = {CreateGroup.class, PutGroup.class}) @PositiveOrZero(groups = {CreateGroup.class, PutGroup.class})
     private Double price;
 
+
     public CIModuleInputDto() {
     }
 

@@ -2,6 +2,8 @@ package nl.moriku.techiteasy.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -44,18 +46,21 @@ public class Television {
     private Integer originalStock = 0;
     @Column(nullable = false)
     private Integer sold = 0;
+
     @OneToOne
     @JoinColumn(name = "remote_controller_id")
     private RemoteController remoteController;
+
     @OneToMany(mappedBy = "television")
-    private List<CIModule> ciModules;
+    private List<CIModule> ciModules = new ArrayList<>();
+
     @ManyToMany
     @JoinTable(
-        name = "television_wall_brackets",
+        name = "televisions_wall_brackets",
         joinColumns = @JoinColumn(name = "television_id"),
         inverseJoinColumns = @JoinColumn(name = "wall_bracket_id")
     )
-    private List<WallBracket> wallBrackets;
+    private List<WallBracket> wallBrackets = new ArrayList<>();
 
     public Television() {
     }
