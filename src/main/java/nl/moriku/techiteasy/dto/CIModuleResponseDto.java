@@ -6,6 +6,7 @@ public class CIModuleResponseDto {
     private String name;
     private String brand;
     private Double price;
+    private Long televisionId;
 
     public Long getId() {
         return id;
@@ -45,5 +46,13 @@ public class CIModuleResponseDto {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Long getTelevisionId() {
+        return televisionId;
+    }
+
+    public void setTelevisionId(Long televisionId) {
+        this.televisionId = televisionId;
     }
 }

@@ -32,6 +32,9 @@ public class CIModuleMapper {
         dto.setType(ciModule.getType());
         dto.setBrand(ciModule.getBrand());
         dto.setPrice(ciModule.getPrice());
+        if (ciModule.getTelevision() != null) {
+            dto.setTelevisionId(ciModule.getTelevision().getId());
+        }
         return dto;
     }
 }

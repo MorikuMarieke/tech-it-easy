@@ -2,7 +2,11 @@ package nl.moriku.techiteasy.mapper;
 
 import nl.moriku.techiteasy.dto.WallBracketInputDto;
 import nl.moriku.techiteasy.dto.WallBracketResponseDto;
+import nl.moriku.techiteasy.model.Television;
 import nl.moriku.techiteasy.model.WallBracket;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WallBracketMapper {
 
@@ -33,6 +37,13 @@ public class WallBracketMapper {
         dto.setSize(wallBracket.getSize());
         dto.setAdjustable(wallBracket.getAdjustable());
         dto.setPrice(wallBracket.getPrice());
+        if (!wallBracket.getTelevisions().isEmpty()) {
+            List<Long> televisionIds = new ArrayList<>();
+            for (Television tv : wallBracket.getTelevisions()) {
+                televisionIds.add(tv.getId());
+            }
+            dto.setTelevisionIds(televisionIds);
+        }
         return dto;
     }
 }

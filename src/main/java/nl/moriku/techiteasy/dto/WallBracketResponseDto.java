@@ -1,5 +1,7 @@
 package nl.moriku.techiteasy.dto;
 
+import java.util.List;
+
 public class WallBracketResponseDto {
 
     private Long id;
@@ -7,6 +9,7 @@ public class WallBracketResponseDto {
     private String size;
     private Boolean adjustable;
     private Double price;
+    private List<Long> televisionIds;
 
     public Long getId() {
         return id;
@@ -46,5 +49,13 @@ public class WallBracketResponseDto {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public List<Long> getTelevisionIds() {
+        return televisionIds;
+    }
+
+    public void setTelevisionIds(List<Long> televisionIds) {
+        this.televisionIds = televisionIds;
     }
 }
