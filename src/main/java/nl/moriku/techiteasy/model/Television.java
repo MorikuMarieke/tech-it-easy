@@ -3,7 +3,6 @@ package nl.moriku.techiteasy.model;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -51,7 +50,7 @@ public class Television {
     @JoinColumn(name = "remote_controller_id")
     private RemoteController remoteController;
 
-    @OneToMany(mappedBy = "television")
+    @OneToMany(mappedBy = "television", cascade = CascadeType.ALL)
     private List<CIModule> ciModules = new ArrayList<>();
 
     @ManyToMany
