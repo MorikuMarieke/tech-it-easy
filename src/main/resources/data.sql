@@ -57,3 +57,16 @@ VALUES
     (10, 1),-- TV 10 gebruikt Bracket 1
     (10, 2),-- TV 10 gebruikt Bracket 2
     (10, 3);-- TV 10 gebruikt Bracket 3
+
+-- USERS
+INSERT INTO users (username, password, email, enabled)
+VALUES
+    ('mali', '$2a$10$Dow1uN6pN0Z3Ud8UfJmReecFQ4rpKu0qvHj8pYJr6VSa3aP/qjG2G', 'mali@example.com', true),
+    ('admin', '$2a$10$z6lyakT9VQ0f2daxbHSG1uU0Q3xS8H5j8JM0ip0z6R5z2w0y2JjVa', 'admin@example.com', true);
+
+-- AUTHORITIES
+INSERT INTO authorities (user_id, authority)
+VALUES
+    ((SELECT id FROM users WHERE username = 'mali'), 'ROLE_USER'),
+    ((SELECT id FROM users WHERE username = 'admin'), 'ROLE_ADMIN'),
+    ((SELECT id FROM users WHERE username = 'admin'), 'ROLE_USER');
