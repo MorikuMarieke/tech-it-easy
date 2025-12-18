@@ -65,8 +65,8 @@ VALUES
     ('admin', '$2a$10$z6lyakT9VQ0f2daxbHSG1uU0Q3xS8H5j8JM0ip0z6R5z2w0y2JjVa', 'admin@example.com', true);
 
 -- AUTHORITIES
-INSERT INTO authorities (user_id, authority)
+INSERT INTO authorities (username, authority)
 VALUES
-    ((SELECT id FROM users WHERE username = 'mali'), 'ROLE_USER'),
-    ((SELECT id FROM users WHERE username = 'admin'), 'ROLE_ADMIN'),
-    ((SELECT id FROM users WHERE username = 'admin'), 'ROLE_USER');
+    ('mali', 'ROLE_USER'),
+    ('admin', 'ROLE_ADMIN'),
+    ('admin', 'ROLE_USER');

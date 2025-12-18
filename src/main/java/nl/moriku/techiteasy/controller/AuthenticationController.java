@@ -4,12 +4,16 @@ import nl.moriku.techiteasy.dto.JwtRequestDto;
 import nl.moriku.techiteasy.dto.JwtResponseDto;
 import nl.moriku.techiteasy.security.CustomUserDetailsService;
 import nl.moriku.techiteasy.security.JwtUtil;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
+import java.security.Principal;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class AuthenticationController {
 
@@ -23,10 +27,28 @@ public class AuthenticationController {
         this.jwtUtil = jwtUtil;
     }
 
-//    @PostMapping("/authenticate")
-//    public ResponseEntity<JwtResponseDto> createAuthenticateToken(@RequestBody JwtRequestDto requestDto) {
-//        try {
-//            var
-//        }
-//    } Ik was halverwege hier bezig met het implementeren van postmapping voor authenticatie.
+    @GetMapping("/authenticated")
+    public ResponseEntity<Object> authenticated(Authentication authentication, Principal principal) {
+        return ResponseEntity.ok(principal);
+    }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<JwtResponseDto> createAuthenticateToken(@RequestBody JwtRequestDto requestDto) {
+
+        String username = requestDto.getUsername();
+        String password = requestDto.getPassword();
+
+        try {
+            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
+            authenticationManager.authenticate(authToken);
+        } catch (BadCredentialsException ex) {
+            return ResponseEntity.status(401).build();
+        }
+
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        String jwt = jwtUtil.generateToken(userDetails);
+
+        JwtResponseDto response = new JwtResponseDto(jwt);
+        return ResponseEntity.ok(response);
+    }
 }
