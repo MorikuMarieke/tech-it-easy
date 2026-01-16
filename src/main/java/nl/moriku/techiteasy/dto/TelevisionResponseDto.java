@@ -1,78 +1,53 @@
-package nl.moriku.techiteasy.model;
+package nl.moriku.techiteasy.dto;
 
-import jakarta.persistence.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "televisions")
+public class TelevisionResponseDto {
 
-public class Television {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+
     private String name;
-    @Column(nullable = false)
     private String type;
-    @Column(nullable = false)
     private String brand;
-    @Column(nullable = false)
     private Double price;
-    @Column(nullable = false)
+
     private Double availableSize;
-    @Column(nullable = false)
     private Integer refreshRate;
-    @Column(nullable = false)
     private String screenType;
-    @Column(nullable = false)
     private String screenQuality;
-    @Column(nullable = false)
+
     private Boolean smartTv;
-    @Column(nullable = false)
     private Boolean wifi;
-    @Column(nullable = false)
     private Boolean voiceControl;
-    @Column(nullable = false)
     private Boolean hdr;
-    @Column(nullable = false)
     private Boolean bluetooth;
-    @Column(nullable = false)
     private Boolean ambiLight;
-    @Column(nullable = false)
-    private Integer originalStock = 0;
-    @Column(nullable = false)
-    private Integer sold = 0;
 
-    @OneToOne
-    @JoinColumn(name = "remote_controller_id")
-    private RemoteController remoteController;
+    private Integer originalStock; // optional to expose
+    private Integer sold;          // read-only
 
-    @OneToMany(mappedBy = "television", cascade = CascadeType.ALL)
-    private List<CIModule> ciModules = new ArrayList<>();
+    // Convenience (optional): computed by mapper/service
+    private Integer currentStock;
 
-    @ManyToMany
-    @JoinTable(
-        name = "televisions_wall_brackets",
-        joinColumns = @JoinColumn(name = "television_id"),
-        inverseJoinColumns = @JoinColumn(name = "wall_bracket_id")
-    )
-    private List<WallBracket> wallBrackets = new ArrayList<>();
-
-    public Television() {
-    }
+    private Long remoteControllerId;
+    private List<Long> ciModuleIds;
+    private List<Long> wallBracketIds;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getType() {
         return type;
@@ -194,31 +169,35 @@ public class Television {
         this.sold = sold;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Integer getCurrentStock() {
+        return currentStock;
     }
 
-    public RemoteController getRemoteController() {
-        return remoteController;
+    public void setCurrentStock(Integer currentStock) {
+        this.currentStock = currentStock;
     }
 
-    public void setRemoteController(RemoteController remoteController) {
-        this.remoteController = remoteController;
+    public Long getRemoteControllerId() {
+        return remoteControllerId;
     }
 
-    public List<CIModule> getCiModules() {
-        return ciModules;
+    public void setRemoteControllerId(Long remoteControllerId) {
+        this.remoteControllerId = remoteControllerId;
     }
 
-    public void setCiModules(List<CIModule> ciModules) {
-        this.ciModules = ciModules;
+    public List<Long> getCiModuleIds() {
+        return ciModuleIds;
     }
 
-    public List<WallBracket> getWallBrackets() {
-        return wallBrackets;
+    public void setCiModuleIds(List<Long> ciModuleIds) {
+        this.ciModuleIds = ciModuleIds;
     }
 
-    public void setWallBrackets(List<WallBracket> wallBrackets) {
-        this.wallBrackets = wallBrackets;
+    public List<Long> getWallBracketIds() {
+        return wallBracketIds;
+    }
+
+    public void setWallBracketIds(List<Long> wallBracketIds) {
+        this.wallBracketIds = wallBracketIds;
     }
 }
